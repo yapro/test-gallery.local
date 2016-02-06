@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Total: <span class="text-success">{{ pagination.getTotalItemCount }}</span></h1>
+    <table class="table table-striped">
+        {% for image in pagination %}
+            {{ include('AppBundle:Default:imageItem.html.twig', {'image': image}) }}
+        {% endfor %}
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

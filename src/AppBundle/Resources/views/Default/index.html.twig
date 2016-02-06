@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Welcome</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Album name</th>
+            </tr>
+        </thead>
+    {% for r in albums %}
+        <tr>
+            <td width="1">{{ r.id }}</td>
+            <td><a href="{{ url('DefaultAlbum', { id : r.id }) }}">{{ r.name }}</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
