@@ -11,11 +11,12 @@ class LoadAlbumsWithImages implements FixtureInterface
 {
 	public function load(ObjectManager $manager)
 	{
-		for ($i = 0; $i < 11; $i++) {
+		for ($i = 0; $i < 5; $i++) {
 			$album = new Album();
 			$album->setName('Album ' . $i);
 			$manager->persist($album);
-			for ($n = 0; $n < 11; $n++) {
+			$max = $i === 0 ? 5 : 21;
+			for ($n = 0; $n < $max; $n++) {
 				$image = new Image();
 				$image->setAlbum($album);
 				$manager->persist($image);

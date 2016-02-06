@@ -22,7 +22,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 /**
  * @var Composer\Autoload\ClassLoader $loader
  */
-exec('rm -rf '.dirname(__DIR__).'/app/cache/*');
+//exec('rm -rf '.dirname(__DIR__).'/app/cache/*');
 $loader = require_once __DIR__.'/../app/autoload.php';
 //$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 //Debug::enable();
