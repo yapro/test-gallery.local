@@ -1,0 +1,10 @@
+services:
+    app_album_manager:
+        class: AppBundle\Manager\AlbumManager
+        arguments: ["@doctrine.orm.entity_manager", "@knp_paginator"]
+
+    app_response_listener:
+        class: AppBundle\Listener\ViewListener
+        arguments: ["@serializer"]
+        tags:
+          - { name: kernel.event_listener, event: kernel.view, priority: 0, method: onKernelResponse }

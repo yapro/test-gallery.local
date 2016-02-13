@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Controller\Action\AlbumAction;
 use AppBundle\Entity\Album;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // these import the "@Route" and "@Template" annotations
@@ -41,6 +40,6 @@ class DefaultController extends Controller
 	 */
 	public function albumAction($id = 0, $page = 1)
 	{
-		return (new AlbumAction($this->container))->getResult($id, $page);
+		return $this->get('app_album_manager')->getResult($id, $page);
 	}
 }
