@@ -1,13 +1,79 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Total: <span class="text-success">{{ pagination.getTotalItemCount }}</span></h1>
-    <table class="table table-striped">
-        {% for image in pagination %}
-            {{ include('AppBundle:Default:imageItem.html.twig', {'image': image}) }}
-        {% endfor %}
+    <h1>Total: <span id="totalCount" class="text-success"></span></h1>
+
+    <table id="items" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Img</th>
+        </tr>
+        </thead>
     </table>
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+
+    <script id="itemTemplate" type="text/html">
+        <td width="1"><%= id %></td>
+        <td><img src="{{ asset('apple-touch-icon.png') }}"/></td>
+    </script>
+
+    <div id="paginationHtml" class="navigation"></div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {# this can be put in the js-file #}
+        ;(function ($) {
+            function rebindNavigation() {
+                $("#paginationHtml A").click(function () {
+                    $("#items tbody").remove();
+                    var url = $(this).attr("href");
+                    loadData(url);
+                    window.history.pushState("", "", url);
+                    return false;
+                });
+            }
+
+            // Item view
+            var ItemView = Backbone.Marionette.ItemView.extend({
+                template: '#itemTemplate',
+                // wrap the view with `tr` instead of `div`
+                tagName: 'tr'
+            });
+
+            // Collection view
+            var CollectionView = Backbone.Marionette.CollectionView.extend({
+                // Specify the itemView to render each item
+                childView: ItemView,
+                // wrap the view with `tbody` instead of `div`
+                tagName: 'tbody'
+            });
+
+            function loadData(url) {
+
+                $.getJSON(url, function (data) {
+                    // sample collection
+                    var collection = new Backbone.Collection(data.items);
+
+                    var view = new CollectionView({
+                        collection: collection
+                    });
+
+                    // Render and append the view
+                    $("#items").append(view.render().el);
+
+                    $("#totalCount").text(data.pagination.totalCount);
+
+                    $("#paginationHtml").html(data.paginationHtml);
+
+                    rebindNavigation();
+                });
+            }
+
+            loadData(document.location.href);
+
+            $(window).bind('popstate', function () {
+                loadData(document.location);
+            });
+        })(jQuery);
+    </script>
 {% endblock %}

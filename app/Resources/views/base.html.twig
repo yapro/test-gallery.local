@@ -7,8 +7,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="SHORTCUT ICON" href="{{ asset('favicon.ico') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+        <script type="text/javascript" src="{{ asset('js/json2.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/backbone.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/backbone.marionette.js') }}"></script>
     </head>
+    <body class="container">
     <body class="container">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

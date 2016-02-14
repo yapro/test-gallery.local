@@ -1,0 +1,22 @@
+{
+  "name": "test-gallery.local",
+  "version": "1.0.0",
+  "description": "test-gallery.local",
+  "main": "index.js",
+  "dependencies": {
+    "backbone.marionette": "~2.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yapro/test-gallery.local.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/yapro/test-gallery.local/issues"
+  }
+}

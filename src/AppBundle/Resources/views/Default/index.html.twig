@@ -9,11 +9,13 @@
                 <th>Album name</th>
             </tr>
         </thead>
-    {% for r in albums %}
-        <tr>
-            <td width="1">{{ r.id }}</td>
-            <td><a href="{{ url('DefaultAlbum', { id : r.id }) }}">{{ r.name }}</a></td>
-        </tr>
-    {% endfor %}
+        <tbody>
+        {% for r in albums %}
+            <tr>
+                <td width="1">{{ r.id }}</td>
+                <td><a href="{{ url('DefaultAlbum', { id : r.id }) }}">{{ r.name }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

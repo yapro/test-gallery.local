@@ -5,6 +5,6 @@ services:
 
     app_response_listener:
         class: AppBundle\Listener\ViewListener
-        arguments: ["@serializer"]
+        arguments: ["@serializer", "@twig", "@knp_paginator.twig.extension.pagination"]
         tags:
           - { name: kernel.event_listener, event: kernel.view, priority: 0, method: onKernelResponse }
