@@ -35,16 +35,9 @@ class Image
     private $album;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="album_id", type="integer")
-     */
-    private $albumId;
-
-    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -65,28 +58,5 @@ class Image
     public function setAlbum(Album $album)
     {
         $this->album = $album;
-    }
-
-    /**
-     * Set albumId
-     *
-     * @param integer $albumId
-     * @return Image
-     */
-    public function setAlbumId($albumId)
-    {
-        $this->albumId = $albumId;
-
-        return $this;
-    }
-
-    /**
-     * Get albumId
-     *
-     * @return integer
-     */
-    public function getAlbumId()
-    {
-        return $this->albumId;
     }
 }
