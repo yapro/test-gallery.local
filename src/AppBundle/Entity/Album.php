@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +30,23 @@ class Album
      */
     private $name;
 
+    /**
+     * @var int
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Image",
+     *     mappedBy="AppBundle\Entity\Album"
+     * )
+     */
+    private $images;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,5 +79,38 @@ class Album
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add images
+     *
+     * @param Image $images
+     * @return Album
+     */
+    public function addImage(Image $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param Image $images
+     */
+    public function removeImage(Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }
